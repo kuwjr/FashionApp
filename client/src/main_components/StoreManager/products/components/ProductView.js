@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+<<<<<<< HEAD
 //import backend_config from "../../../../config/backend_config"
 //import axios from 'axios';
+=======
+>>>>>>> c6d14336fd4a190d170e398dd9fda83a96f6f1a0
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import baseAxios from '../../../../config/axios';
@@ -43,7 +46,7 @@ export default class Product extends Component {
                     discount_percentage: response.data.discount_percentage,
                     discount_info: response.data.discount_info,
 
-                    ratings: response.data.ratings||[],
+                    ratings: response.data.ratings || [],
                 })
             })
             .catch(function (error) {
@@ -148,10 +151,10 @@ export default class Product extends Component {
                 <div className="d-flex justify-content-center">
                     <div>
                         {this.state.ratings.length !== 0 ? this.state.ratings.map((i) => (<div><h6 key={i._id} {...i}>{i.comment}</h6>
-                        <Box component="fieldset" mb={3} borderColor="transparent">
-                            <Rating name="read-only" value={i.value} readOnly />
-                        </Box></div>
-                        )): null}
+                            <Box component="fieldset" mb={3} borderColor="transparent">
+                                <Rating name="read-only" value={i.value} readOnly />
+                            </Box></div>
+                        )) : null}
                     </div>
                 </div>
                 <div>
