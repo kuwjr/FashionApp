@@ -1,5 +1,5 @@
 let Product = require("../models/Product");
-let Rating = require("../models/Product");
+let Ratings = require("../models/Product");
 
 //GET all products
 const getAllProducts = function (req, res) {
@@ -84,21 +84,27 @@ const uploadImage = function(req, res, next){
 }
 
 //ADD review
-const addReview = function(req, res) {
-    Product.findById(req.params.id, function(err, product,rating) {
-        if (!product)
-            res.status(404).send("data is not found");
-        else
-            rating.comment = req.body.comment;
-            rating.value = req.body.value;
+const addRating = async (req, res) => {
+    let id = req.params.id;
+    Product.findById({ _id: id }).then((product) => {
+        let newRate = new Ratings({
+            comment: req.body.comment,
+            //value: req.body.value,
+            //user_id: req.body.id,
+        })
+        product.ratings.push(newRate)
+        product.save().then(product => {
+            res.status(200).json({ success: true, data: product });
 
-            product.save().then(product => {
-                res.json('Product updated!');
-            })
-            .catch(err => {
-                res.status(400).send("Update not possible");
-            });
-    });
+        }).catch(err => {
+            res.status(400).json({ success: false, error: "unable to update ratings :" + err });
+        });
+     }).catch((err) => {
+        if (err) {
+            res.status(400).json({ success: false, error: err })
+        }
+    }
+  )
 }
 
 module.exports = {
@@ -109,5 +115,5 @@ module.exports = {
     deleteProduct,
     viewOneProduct,
     uploadImage,
-    addReview
+    addRating
 };

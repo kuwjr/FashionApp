@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import baseAxios from '../../../../config/axios';
+import axios from "axios";
+import backend_config from "../../../../config/backend_config";
 
 export default class Product extends Component {
 

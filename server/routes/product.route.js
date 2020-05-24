@@ -3,6 +3,7 @@ const productRoutes = express.Router();
 const productController = require("../controllers/ProductController");
 const Utils = require("../common/CommonUtils")
 const Definitions = require("../definitions/Defs").Definitions
+
 //GET all products route
 productRoutes.route("/").get(productController.getAllProducts);
 
@@ -24,7 +25,7 @@ productRoutes.route("/oneProduct/:id").post(productController.viewOneProduct);
 //UPLOAD image - Using the cloudinary widget, so this won't be used, incase widget doesn't work the back end is here.
 productRoutes.route("/upload").post(productController.uploadImage);
 
-//ADD review
-productRoutes.route('/update/:id').post(productController.addReview);
+//ADD comment
+productRoutes.route('/updateComment/:id').post(productController.addRating);
 
 module.exports = productRoutes;

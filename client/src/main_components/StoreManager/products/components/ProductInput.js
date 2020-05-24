@@ -105,7 +105,7 @@ export default class ProductInput extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        if (!this.state.name || !this.state.description || !this.state.price || !this.state.qty ||
+        if (!this.state.name || !this.state.description || !this.state.price || !this.state.qty || !this.state.image_path ||
             !this.state.discount_percentage || !this.state.discount_info) {
             return alert('Fill all the fields!!!')
         }

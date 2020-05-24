@@ -21,7 +21,7 @@ const createManager = (req, res) => {
         <h3>contact Details</p>
         <ul>
             <li>First Name: ${req.body.first_name}</li>
-            <li>First Name: ${req.body.last_name}</li>
+            <li>Last Name: ${req.body.last_name}</li>
             <li>Username: ${req.body.username}</li>
             <li>Email: ${req.body.email}</li>
             <li>Password: ${req.body.password}</li>

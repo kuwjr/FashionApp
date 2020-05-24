@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import backend_config from "../../../../config/backend_config"
-import axios from 'axios';
+//import backend_config from "../../../../config/backend_config"
+//import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import baseAxios from '../../../../config/axios';
@@ -9,6 +9,9 @@ export default class Product extends Component {
 
     constructor(props) {
         super(props);
+
+        this.onChangeComment = this.onChangeComment.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             name: '',
@@ -22,6 +25,7 @@ export default class Product extends Component {
             discount_info: '',
 
             ratings: [],
+            comment: '',
         }
     }
 
@@ -45,6 +49,22 @@ export default class Product extends Component {
             .catch(function (error) {
                 console.log(error);
             })
+    }
+
+    onChangeComment(e) {
+        this.setState({
+            comment: e.target.value
+        });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+        const obj = {
+            comment: this.state.comment,
+        };
+
+        baseAxios.post('product/updateComment/' + this.props.match.params.id, obj)
+            .then(res => console.log(res.data));
     }
 
     render() {
@@ -133,6 +153,12 @@ export default class Product extends Component {
                         </Box></div>
                         )): null}
                     </div>
+                </div>
+                <div>
+                    <form onSubmit={this.onSubmit}>
+                        <input type="text" placeholder="Add review" onChange={this.onChangeComment}></input>
+                        <button type="submit">Add Product</button>
+                    </form>
                 </div>
 
             </div>

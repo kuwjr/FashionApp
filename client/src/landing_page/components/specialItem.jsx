@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Card from "./card";
-import { Component } from "react";
 import axios from "axios";
 import backend_config from "../../config/backend_config";
 import { addToCartAction } from "../../redux/actions/cart.actions";
